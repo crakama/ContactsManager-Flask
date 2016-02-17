@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Flask</title>    
+    {% if title %}
+    <title>{{ title }} - Contacts Manager </title> 
+    {% else %}
+    <title> Contacts Manager </title>   
     <strong><link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"></strong>
+    {% endif %}
   </head>
   <body>
     <header>
       <div class="container">
-        <h1 class="logo">Flask App</h1>
+        <h1 class="logo">CM App</h1>
         <strong><nav>
           <ul class="menu">
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('about') }}">About</a></li>
+            
           </ul>
         </nav></strong>
 
