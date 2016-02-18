@@ -1,9 +1,10 @@
-from flask import render_template
+from flask import render_template, flash, redirect
 from form import LoginForm
   
 from app import contactsapp
   
 @contactsapp.route('/')
+@contactsapp.route('/home')
 def home():
   return render_template('home.html')
   
@@ -18,7 +19,13 @@ def user(name):
 @contactsapp.route('/login', methods=['GET', 'POST'])	
 def login():
 	form = LoginForm()
-	return render_template('login.html', title='Sign In', form=form)
+	if form.validate_on_submit():
+		flash('Login request for OpenID="%s", remember_me=%s' % (form.openid.data, str(form.remember_me.data)))
+		return redirect('/home')
+	return render_template('login.html', 
+                           title='Sign In',
+                           form=form,
+                           providers=contactsapp.config['OPENID_PROVIDERS'])
 
   
 

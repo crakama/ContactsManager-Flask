@@ -12,6 +12,15 @@
     <header>
       <div class="container">
         <h1 class="logo">CM App</h1>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+           <ul>
+              {% for messages in messages %}
+                  <li>{{ message }}</li>
+              {% endfor %}
+          </ul>
+        {% endif %}
+        {% endwith%}
         <strong><nav>
           <ul class="menu">
             <li><a href="{{ url_for('home') }}">Home</a></li>
