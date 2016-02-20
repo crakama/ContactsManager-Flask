@@ -11,13 +11,14 @@
     <link href = "static/css/bootstrap.min.css" rel="stylesheet" media ="screen" >
     <link href = "static/css/bootstrap.css" rel="stylesheet" media ="screen" >
     <link href = "static/css/bootstrap.responsive.css" rel="stylesheet" media ="screen" >-->
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+     <link href="{{ url_for('static', filename='css/bootstrap-cerulean.min.css') }}" rel="stylesheet">
+     
+       <link href="{{ url_for('static', filename='css/charisma-app.css') }}" rel="stylesheet">
+    <!--<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">-->
     <link href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}" rel="stylesheet">
- 
-    <script href="{{ url_for('static', filename='js/jquery-1.12.0.min.js') }}" src="javascript"></script>
-    <script href="{{ url_for('static', filename='js/bootstrap.min.js') }}" src="javascript"></script>
 
-    <link href="{{ url_for('static', filename='css/Style.css') }}" rel="stylesheet">
+   
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
     
 </head>
     <style>
@@ -25,98 +26,125 @@
 {% endblock %}
 {% block body %}
 <body>
-    <br>
+     {% block scripts %}
+{{ super() }}
+<script src ="{{ url_for('static', filename='js/jquery-1.12.0.min.js') }}" type="text/javascript"></script>
+<script src ="{{ url_for('static', filename='js/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src ="{{ url_for('static', filename='js/jquery.min.js') }}" type="text/javascript"></script>
+<script src ="{{ url_for('static', filename='js/charisma.js') }}" type="text/javascript"></script>
+
+
+{% endblock %}
 
     {% block header %}
     <header>
-      <div class ="navbar-header">
+      <div class ="navbar-default" >
         
-
-      
-        <ul class = "nav nav-pills breadcrumb " role="tablist">
+        <ul class = "nav nav-pills " role="tablist">
             <li role = "presentation" class = "active">
-              <a href="#">Home<span class ="badge"></span></a>
+              <a href="#">Business Contacts Manager<span class ="badge"></span></a>
             </li>
-        <li role = "presentation" class = "">
-              <a href="#">Profile<span class ="badge"></span></a>
-            </li>
-
-            <li role = "presentation" class = "">
-              <a href="#">Companies<span class ="badge"></span></a>
-            </li>
+        
         </ul>
-        <a class ="navbar-brand" href="/">
-            <img style="max-width:50px; margin-top: 7px" src = "{{ url_for('static', filename='appicon.ico') }}"  >
-        </a>
-
     
+<ul class="dropdown pull-right" role="presentation">
+            <li><a href="#"> Logout </a></li>
+            
+        </ul>
 
-      </div>
+
 
     </header>
     {% endblock %}
-
-    <div class="sidebar-nav">
-    {% block sidebar %}
+<br>
+    <div class="sidebar-nav ">
+    {% block navbar %}
 
 
      <!-- left menu starts -->
-        <div class="col-sm-2 col-lg-2 pull-left">
-            <div class="sidebar-nav">
+        <!-- left menu starts -->
+        
+            <div class="sidebar-nav breadcrumb pull-left">
                 <div class="nav-canvas">
                     <div class="nav-sm nav nav-stacked">
 
                     </div>
                     <ul class="nav nav-pills nav-stacked main-menu">
-                        <li class="nav-header">Main</li>
-                        <li><a class="ajax-link" href="index.html"><i class="glyphicon glyphicon-home"></i><span> Dashboard</span></a>
-                        </li>
-                        <li><a class="ajax-link" href="ui.html"><i class="glyphicon glyphicon-eye-open"></i><span> UI Features</span></a>
-                        </li>
-                        <li><a class="ajax-link" href="form.html"><i
-                                    class="glyphicon glyphicon-edit"></i><span> Forms</span></a></li>
-                        <li><a class="ajax-link" href="chart.html"><i class="glyphicon glyphicon-list-alt"></i><span> Charts</span></a>
-                        </li>
-                        <li><a class="ajax-link" href="typography.html"><i class="glyphicon glyphicon-font"></i><span> Typography</span></a>
-                        </li>
-                        <li><a class="ajax-link" href="gallery.html"><i class="glyphicon glyphicon-picture"></i><span> Gallery</span></a>
-                        </li>
-                        <li class="nav-header hidden-md">Sample Section</li>
-                        <li><a class="ajax-link" href="table.html"><i
-                                    class="glyphicon glyphicon-align-justify"></i><span> Tables</span></a></li>
+                        <li class="nav-header glyphicon glyphicon-home"><span> Manage Contacts</span></li> <br>
                         <li class="accordion">
-                            <a href="#"><i class="glyphicon glyphicon-plus"></i><span> Accordion Menu</span></a>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">Child Menu 1</a></li>
-                                <li><a href="#">Child Menu 2</a></li>
-                            </ul>
+                        <a href="#"><i class="glyphicon glyphicon-edit"></i><span> Add New Contacts</span></a>
+                           
                         </li>
-                        <li><a class="ajax-link" href="calendar.html"><i class="glyphicon glyphicon-calendar"></i><span> Calendar</span></a>
+                        <br>
+                         <li><a class="ajax-link" href="form.html"><i
+                                    class="glyphicon glyphicon-eye-open"></i><span> View All Contacts</span></a></li>
+                       <br>
+                        <li><a class="ajax-link" href="form.html"><i
+                                    class="glyphicon glyphicon-list-alt"></i><span> Most Recent</span></a></li>
+                        <br>
+                        <li><a class="ajax-link" href="typography.html"><i class="glyphicon glyphicon-star"></i><span> Favourites</span></a>
                         </li>
-                        <li><a class="ajax-link" href="grid.html"><i
-                                    class="glyphicon glyphicon-th"></i><span> Grid</span></a></li>
-                        <li><a href="tour.html"><i class="glyphicon glyphicon-globe"></i><span> Tour</span></a></li>
-                        <li><a class="ajax-link" href="icon.html"><i
-                                    class="glyphicon glyphicon-star"></i><span> Icons</span></a></li>
-                        <li><a href="error.html"><i class="glyphicon glyphicon-ban-circle"></i><span> Error Page</span></a>
+                        
+                        <br>
+                        <li class="accordion">
+                            <a href="#"><i class="glyphicon glyphicon-briefcase"></i><span> Opportunities</span></a>
+                            
+                        </li><br>
+                        <li class="accordion">
+                            <a href="#"><i class="glyphicon glyphicon-th-large"></i><span> Organization</span></a>
+                            
                         </li>
-                        <li><a href="login.html"><i class="glyphicon glyphicon-lock"></i><span> Login Page</span></a>
-                        </li>
+                        
                     </ul>
-                    <label id="for-is-ajax" for="is-ajax"><input id="is-ajax" type="checkbox"> Ajax on menu</label>
+                    
                 </div>
             </div>
-        </div>
+      
         <!--/span-->
+        <!-- left menu ends -->
       {% endblock %}</div>
 
       <div class="row">
 
-      {% block innerbox %}
+      {% block content %}
+    
+        <div class="box col-md-10">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2><i class="glyphicon glyphicon-th"></i> Grid 12</h2>
 
+                    <div class="box-icon">
+                        <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                class="glyphicon glyphicon-cog"></i></a>
+                        <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                class="glyphicon glyphicon-chevron-up"></i></a>
+                        <a href="#" class="btn btn-close btn-round btn-default"><i
+                                class="glyphicon glyphicon-remove"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <div class="row">
+                        <div class="col-md-4"><h6>Search Contacts</h6>
+                              <form class="navbar-search ">
+                        <input placeholder="Search" class="search-query form-control col-md-10" name="query"
+                               type="text">
+                    </form>
+
+                        </div>
+                        <div class="col-md-4"><h6>column 4</h6></div>
+                        <div class="col-md-4"><h6>column 4</h6></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/span-->
+    
 
       {% endblock %}
     </div>
+
+
+ 
 </body>
 
 {% endblock %}

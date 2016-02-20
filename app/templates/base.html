@@ -42,14 +42,16 @@
       </div>
       </header>
       <div class="sidebar-nav">
-      {% block sidebar %}
+      {% block navbar %}
       {% endblock %}
     </div>
      
     <div class="row">
-      {% block innerbox %}
+      {% block content %}
       {% endblock %}
     </div>
+    {% block scripts %}
+    {% endblock %}
   </body>
 </html> -->
 

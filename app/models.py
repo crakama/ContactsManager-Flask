@@ -2,6 +2,10 @@ from app import db
 
 class User(db.Model):
 	id = db.Column(db.String, primary_key=True)
+	name = db.Column(db.String(64))
+	location = db.Column(db.String(64))
+	about_me = db.Column(db.Text())
+	#Contact_since = db.Column(db.DateTime(), default=datetime.utcnow)
 	username = db.Column(db.String(64), index=True, unique=True)
 	email = db.Column(db.String(120), index=True, unique= True)
 
