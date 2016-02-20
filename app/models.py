@@ -8,3 +8,14 @@ class User(db.Model):
 	def __repr__(self):
 
 		return '<User %r>' % (self.username)
+
+class Contacts(db.Model):
+	id = db.Column(db.Integer, primary_key =True)
+	Name = db.Column(db.String(140))
+	MobileNo = db.Column(db.Integer())
+	skypeID = db.Column(db.String(140))
+	Organization = db.Column(db.String(140))
+	Position = db.Column(db.String(140))
+
+	def __repr__(self):
+		return '<Contacts %r>' % (self.Position)

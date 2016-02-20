@@ -1,0 +1,67 @@
+<!--<!DOCTYPE html>
+<html>
+<head>
+{% block head %}
+            <meta charset="utf-8">
+        <title>
+          {% block title %}
+              {% if title %}
+                  <title>{{ title }} - Contacts Manager </title> 
+              {% else %}
+                  <title> Contacts Manager </title>
+                        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+                        <link href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}" rel="stylesheet">
+                     
+                        <script href="{{ url_for('static', filename='js/jquery-1.12.0.min.js') }}" src="javascript"></script>
+                        <script href="{{ url_for('static', filename='js/bootstrap.min.js') }}" src="javascript"></script>
+
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              {% endif %}
+          {% endblock %} - My Application
+        </title>
+
+{% endblock %}
+</head>
+  <body>
+      {% block body %}
+            <body>
+                 <header>
+                    <div class="container">
+                       <h1 class="logo">CM App</h1>
+                          {% with messages = get_flashed_messages() %}
+                             
+                             {% if messages %}
+                                 <ul>
+                                        {% for messages in messages %}
+                                            <li>{{ message }}</li>
+                                        {% endfor %}
+                                  </ul>
+                              
+                              {% endif %}
+                          
+                          {% endwith%}
+                                      <strong><nav>
+                                             <ul class="menu">
+                                                <li><a href="{{ url_for('home') }}">Home</a></li>
+                                                <li><a href="{{ url_for('about') }}">About</a></li>
+                        
+                             </ul>
+                          </nav></strong>
+
+                    </div>
+                  </header>
+   
+                  <div class="container">
+                      {% block content %}
+                      {% endblock %}
+                  </div>
+            </body>
+      
+
+
+
+
+
+      {% endblock %}
+ </body>
+</html>-->
