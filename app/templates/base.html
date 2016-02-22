@@ -21,12 +21,15 @@
   <body>
     <header>
       <div class="container">
-        <h1 class="logo">CM App</h1>
+        
         {% with messages = get_flashed_messages() %}
         {% if messages %}
            <ul>
               {% for messages in messages %}
+              <div class="alert alert-warning alert-dismissible" role = "alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   <li>{{ message }}</li>
+              </div>
               {% endfor %}
           </ul>
         {% endif %}
@@ -50,8 +53,17 @@
       {% block content %}
       {% endblock %}
     </div>
+    <div>
     {% block scripts %}
+    
     {% endblock %}
+    </div>
+     <div>
+    {% block page_content %}
+    
+    {% endblock %}
+    </div>
+    
   </body>
 </html> -->
 
