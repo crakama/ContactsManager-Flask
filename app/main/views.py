@@ -1,26 +1,40 @@
 from flask import render_template, flash, redirect,request,url_for,session
-from form import LoginForm, RegForm,AddNewContactForm
-from models import User
-from flask.ext.mail import Message, Mail
- 
-mail = Mail()
+from . import main
+from .. import db
+from forms import LoginForm, RegForm,AddNewContactForm
+from functools import wraps
+from ..models import User
+
   
-from app import contactsapp
+#from .. import contactsapp
+
+def login_required(f):
+	@wraps(f)
+	def wrap(*args, **kwargs):
+		if 'logged_in' in session:
+			return f(*args, **kwargs)
+		else:
+			flash('You need to login first')
+			return redirect(url_for('login'))
+	return wrap
+
  #Decorators used to link functions to urls 
-@contactsapp.route('/')
-@contactsapp.route('/home')
+@main.route('/')
+@main.route('/home')
+@login_required
 def home():
   return render_template('home.html')
   
-@contactsapp.route('/about')
+@main.route('/about')
 def about():
   return render_template('about.html')
 
-@contactsapp.route('/user/<name>')
+
+@main.route('/user/<name>')
 def user(name):
 	return '<h1>Hello, %s!</h1>' % name
 
-@contactsapp.route('/login/', methods=['GET', 'POST'])
+@main.route('/login/', methods=['GET', 'POST'])
 def login():
 	form = LoginForm()
 	if request.method == 'POST':
@@ -36,12 +50,13 @@ def login():
                            title='Sign In',form=form)
 
 #pops out the session object and replaces it with None upon calling of logout route. Session key gets deleted	
-@contactsapp.route('/logout')
+@main.route('/logout')
+@login_required
 def logout():
 	session.pop('logged_in', None)
 	return redirect(url_for('login'))
 
-@contactsapp.route('/addnew/', methods=['GET', 'POST'])
+@main.route('/addnew/', methods=['GET', 'POST'])
 def addContact():
 	form = AddNewContactForm()
 	if form.validate_on_submit():
@@ -66,7 +81,7 @@ def addContact():
 #                            form=form,
 #                            )
 
-@contactsapp.route('/register/',methods=['GET', 'POST'])	
+@main.route('/register/',methods=['GET', 'POST'])	
 def register():
 	form = RegForm()
 	

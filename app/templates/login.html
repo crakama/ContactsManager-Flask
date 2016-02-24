@@ -72,6 +72,9 @@
                     </p>
                 </fieldset>
             </form>
+            {% for message in get_flashed_messages() %}
+               {{message}}
+            {% endfor %}
         </div>
         <!--/span-->
     </div><!--/row-->

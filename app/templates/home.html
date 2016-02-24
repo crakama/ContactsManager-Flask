@@ -41,6 +41,9 @@
         </ul>
     <ul class="nav navbar-nav navbar-right " role="presentation">
             <li><a href=""{{ url_for('logout') }}""> Logout </a></li>
+            {% for message in get_flashed_messages() %}
+               {{message}}
+            {% endfor %}
             
         </ul>
 
