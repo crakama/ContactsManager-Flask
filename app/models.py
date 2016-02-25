@@ -1,12 +1,19 @@
-#import the db server
+from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
+from flask.ext.login import UserMixin
+from app import login_manager
 
-class User(db.Model):
+
+
+
+class User(UserMixin, db.Model):
 	__tablename__ = "usertable"
-	id = db.Column(db.String, primary_key=True)
+	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(64), index=True, unique=True)
-	#email = db.Column(db.String(120), index=True, unique= True)
-	password = db.Column(db.String(64),index=True, unique=True)
+	email = db.Column(db.String(120), index=True, unique= True)
+	PhoneNum = db.Column(db.Integer,index=True, unique=True)
+	password_hash = db.Column(db.String(64),index=True, unique=True)
+	
 	Contacts_id = db.Column(db.Integer, db.ForeignKey('usercontacts.id'))
 
 	#name = db.Column(db.String(64))
@@ -14,11 +21,31 @@ class User(db.Model):
 	#about_me = db.Column(db.Text())
 	#Contact_since = db.Column(db.DateTime(), default=datetime.utcnow)
 
+	@property
+	def password(self):
+		'''prevents access to password property'''
+		raise AttributeError('password is not a readable attribute.')
+
+	@password.setter
+	def password(self, password):
+		'''Sets password to a hashed password
+		'''
+		self.password_hash = generate_password_hash(password)
+
+	def verify_password(self, password):
+		return check_password_hash(self.password_hash, password)
 	
 
 	def __repr__(self):
 
 		return '<User %r>' % (self.username)
+
+	@login_manager.user_loader
+	def get_user(ident):
+  		return User.query.get(int(ident))
+
+
+
 
 class Contacts(db.Model):
 	__tablename__ = "usercontacts"

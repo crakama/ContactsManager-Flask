@@ -1,15 +1,19 @@
 #Import Flask class from the flask module
 from flask import Flask
-
 from flask_bootstrap import Bootstrap
 from flask.ext.mail import Mail
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.login import LoginManager
 from config import config
 
 
 
 bootstrap = Bootstrap()
 mail = Mail()
+
+login_manager = LoginManager()
+login_manager.session_protection = 'strong'
+login_manager.login_view = 'auth.login'
 
 #Create the database Object
 db = SQLAlchemy()
@@ -31,7 +35,8 @@ def create_app(config_name):
 	bootstrap.init_app(contactsapp)
 
 	mail.init_app(contactsapp)
-    
+
+	login_manager.init_app(contactsapp)
     #Flask sesion, different from db.session
 	contactsapp.secrete_key = "development_key"
 	
@@ -42,6 +47,9 @@ def create_app(config_name):
 	
 	from main import main as main_blueprint
 	contactsapp.register_blueprint(main_blueprint)
+
+	from .auth import auth as auth_blueprint
+	contactsapp.register_blueprint(auth_blueprint, url_prefix='/auth')
 		
 	return contactsapp
 
