@@ -1,17 +1,13 @@
 import os
 import re
-#from . import create_app
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-
-
-#SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
-SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 
 WTF_CSRF_ENABLED = True
 
 class Config:
-	basedir = os.path.abspath(os.path.dirname(__file__))
+
 	SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
 	SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 	FLASKY_MAIL_SUBJECT_PREFIX = '[ContactsManager]'
@@ -31,11 +27,14 @@ class DevelopmentConfig(Config):
 	MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
 	MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 	SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-	'sqlite:///' + os.path.join(basedir, 'contactsDB-dev.sqlite')
+	'sqlite:///' + os.path.join(basedir, 'contactsDB_dev.sqlite')
+	SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+
 class TestingConfig(Config):
 	TESTING = True
 	SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
-	'sqlite:///' + os.path.join(basedir, 'contactsDB-test.sqlite')
+	'sqlite:///' + os.path.join(basedir, 'contactsDB_test.sqlite')
+
 class ProductionConfig(Config):
 	SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
 	'sqlite:///' + os.path.join(basedir, 'contactsDB.sqlite')
@@ -47,3 +46,11 @@ config = {
 	'production': ProductionConfig,
 	'default': DevelopmentConfig
 }
+
+#What this file does for the SQLAlchemy DB framework
+#
+#Creates URLs that points to the database location
+#Defines a dictionary whose keys are arguments to the create_app function in the init file.
+#The key is usually speciafied during database creation when th db_create.py file is run
+#The create_app function then uses the value of the key to determine which configurations to pick for database creation
+#

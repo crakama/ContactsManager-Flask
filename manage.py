@@ -6,6 +6,7 @@ from app.models import User
 from flask.ext.script import Manager, Shell
 from flask.ext.migrate import Migrate, MigrateCommand
 contactsapp = create_app(os.getenv('FLASK_CONFIG') or 'default')
+
 manager = Manager(contactsapp)
 migrate = Migrate(contactsapp, db)
 
