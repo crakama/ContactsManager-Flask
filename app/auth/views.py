@@ -25,7 +25,7 @@ def home():
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    print "catedgrfkng ske"
+
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is not None and user.verify_password(form.password.data):
@@ -64,17 +64,6 @@ def register():
     return render_template('auth/register.html', form=form)
 
 
-@auth.route('/addnew/', methods=['GET', 'POST'])
-def addContact():
-	form = AddNewContactForm()
-	if form.validate_on_submit():
-
-		return redirect(url_for('home'))
-
-	return render_template('addnew.html', 
-                           title='Add New',
-                           form=form,
-                           )
 
 
 

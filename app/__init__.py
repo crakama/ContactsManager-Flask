@@ -19,7 +19,7 @@ login_manager.login_view = 'auth.login'
 db = SQLAlchemy()
 
 
-#from app import models
+from app import models
 
 
 
@@ -50,6 +50,9 @@ def create_app(config_name):
 
 	from .auth import auth as auth_blueprint
 	contactsapp.register_blueprint(auth_blueprint, url_prefix='/auth')
+
+	from .crudcontacts import crudcontacts as crudcontacts_blueprint
+	contactsapp.register_blueprint(crudcontacts_blueprint, url_prefix='/crudcontacts')
 		
 	return contactsapp
 

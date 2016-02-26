@@ -1,5 +1,7 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
 from flask.ext.login import UserMixin
 from app import login_manager
 
@@ -51,20 +53,25 @@ class Contacts(db.Model):
 	__tablename__ = "usercontacts"
 
 	id = db.Column(db.Integer, primary_key =True)
-	Name = db.Column(db.String(140), nullable=False)
-	MobileNo = db.Column(db.Integer(), nullable=False)
-	skypeID = db.Column(db.String(140), nullable=False)
-	Organization = db.Column(db.String(140), nullable=False)
-	Position = db.Column(db.String(140),nullable=False)
+	firstname = db.Column(db.String(140), nullable=True)
+	lastname = db.Column(db.String(140), nullable=True)
+	email = db.Column(db.String(140), nullable=True)
+	mobilenumber = db.Column(db.String(140), nullable=True)
+	country = db.Column(db.String(140), nullable=True)
+	skypeID = db.Column(db.String(140), nullable=True)
+	organization = db.Column(db.String(140), nullable=True)
+	position = db.Column(db.String(140),nullable=True)
 	users_rel = db.relationship('User', backref='relContacts')
 
-	def __init__(self,Name,MobileNo,skypeID,Organization,Position):
-
-		self.Name = Name
-		self.MobileNo = MobileNo
+	def __init__(self,firstname,lastname,email,mobilenumber,country,organization,skypeID,position):
+		self.firstname  = firstname 
+		self.lastname  = lastname
+		self.email  = email
+		self.mobilenumber  = mobilenumber
+		self.country  = country
+		self.organization  = organization
 		self.skypeID = skypeID
-		self.Organization = Organization
-		self.Position = Position
+		self.position = position
     #specifies how you want the object to be represented when it gets printed
 	def __repr__(self):
-		return '<Name %r>' % (self.Position)
+		return '<firstname %r>' % (self.firstname)

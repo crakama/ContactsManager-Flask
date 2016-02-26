@@ -40,7 +40,7 @@
         
         </ul>
     <ul class="nav navbar-nav navbar-right " role="presentation">
-            <li><a href=""{{ url_for('auth.logout') }}""> Logout </a></li>
+            <li><a href="{{ url_for('auth.logout') }}"> Logout </a></li>
             {% for message in get_flashed_messages() %}
                {{message}}
             {% endfor %}
@@ -73,7 +73,7 @@
                            
                         </li>
                         <br>
-                         <li><a href="{{ url_for('auth.addContact') }}"><i class="glyphicon glyphicon-edit"></i><span> Add New Contacts</span></a>
+                         <li><a href="{{ url_for('crudcontacts.addContact') }}"><i class="glyphicon glyphicon-edit"></i><span> Add New Contacts</span></a>
                             </li>
                        <br>
                         <li><a class="ajax-link" href="#"><i
