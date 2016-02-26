@@ -1,7 +1,6 @@
 from flask import render_template, flash, redirect,request,url_for,session
 from . import main
 from .. import db
-from forms import AddNewContactForm
 
 from ..models import User
 

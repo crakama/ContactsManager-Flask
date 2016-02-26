@@ -1,0 +1,43 @@
+
+{% extends 'base.html' %}
+{% block head %}
+<head>
+
+<link href="{{ url_for('static', filename='css/bootstrap-cerulean.min.css') }}" rel="stylesheet">
+<!-- <link href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}" rel="stylesheet"> -->
+</head>
+
+{% endblock %}
+{% block page_content %}
+<div class="col-md-8 col-md-offset-2">
+  <div class="jumbotron">
+
+ 
+  <div class="panel panel-default">  
+
+    {% for con in cons_ %} 
+    <ul class="list-group">
+      <a href="#" class="list-group-item">
+        <h4 class="list-group-item-heading">
+          {{ con.firstname }} 
+        </h4>
+        <p class="list-group-item-text">
+        {{ con.firstname }} <br>
+        {{ con.lastname }} <br>
+        {{ con.email }} <br>
+        {{ con.mobilenumber }} <br>
+        {{ con.country }} <br>
+        {{ con.skypeID }} <br>
+        {{ con.position }} <br>
+        {{ con.organization }} <br>
+             
+        </p>
+       
+      </a> 
+    </ul>
+    {% endfor %}
+  </div>  
+
+</div>
+</div>
+{% endblock %}

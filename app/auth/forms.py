@@ -35,5 +35,5 @@ class RegistrationForm(LoginForm):
                                           [validators.Required()])
     first_name = StringField('First Name', [validators.Required()])
     last_name = StringField('Last Name', [validators.Required()])
-    submit = SubmitField('Save Contact')
+    submit = SubmitField('submit')
 
