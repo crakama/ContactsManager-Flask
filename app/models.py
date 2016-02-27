@@ -1,3 +1,5 @@
+import urllib, hashlib
+from hashlib import md5
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
 from sqlalchemy import ForeignKey
@@ -5,6 +7,7 @@ from sqlalchemy.orm import relationship
 from flask.ext.login import UserMixin
 from app import login_manager
 
+ 
 
 
 
@@ -49,6 +52,8 @@ class User(UserMixin, db.Model):
 
 
 
+
+
 class Contacts(db.Model):
 	__tablename__ = "usercontacts"
 
@@ -72,6 +77,11 @@ class Contacts(db.Model):
 		self.organization  = organization
 		self.skypeID = skypeID
 		self.position = position
+  	def avatar(self, size):
+  		# gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(email.lower()).hexdigest() + "?"
+  		# gravatar_url += urllib.urlencode({'d':default, 's':str(size)})
+  		
+  		return 'http://www.gravatar.com/avatar/%s?d=mm&s=%d' % (md5(self.email.encode('utf-8')).hexdigest(), size)
     #specifies how you want the object to be represented when it gets printed
 	def __repr__(self):
 		return '<firstname %r>' % (self.firstname)

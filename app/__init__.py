@@ -43,6 +43,15 @@ def create_app(config_name):
 
 	db.init_app(contactsapp)
 
+	# gravatar = Gravatar(app,
+ #                    size=100,
+ #                    rating='g',
+ #                    default='retro',
+ #                    force_default=False,
+ #                    force_lower=False,
+ #                    use_ssl=False,
+ #                    base_url=None)
+
 
 	
 	from main import main as main_blueprint

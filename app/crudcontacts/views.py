@@ -4,6 +4,15 @@ from .. import db
 from ..models import Contacts
 from .forms import AddNewContactForm
 
+@crudcontacts.route('/viewall', methods=['GET', 'POST'])
+def viewAllContacts():
+    
+    cons_ = Contacts.query.all()
+    if cons_ is None:
+        return redirect(url_for('main.page_not_found'))
+
+    return render_template('home.html', cons_=cons_)
+
 
 
 @crudcontacts.route('/addnew', methods=['GET', 'POST'])
@@ -24,11 +33,32 @@ def addContact():
       return redirect(url_for('auth.home'))
     return render_template('crudcontacts/addnew.html', form=form)
 
-@crudcontacts.route('/viewall', methods=['GET', 'POST'])
-def viewAllContacts():
-    
-    cons_ = Contacts.query.all()
-    if cons_ is None:
-        return redirect(url_for('main.page_not_found'))
 
-    return render_template('crudcontacts/viewall.html', cons_=cons_)
+@crudcontacts.route('/editContacts', methods=['GET', 'POST'])
+
+def editUserContacts():
+    con = Contacts.query.get_or_404(id)
+    form = EditContactForm()
+    if form.validate_on_submit():
+      con.firstname = form.firstname.data
+      con.lastname = form.lastname.data
+      con.email = form.email.data
+      con.skypeID = form.skypeID.data
+      con.mobilenumber = form.mobilenumber.data
+      con.country = form.country.data
+      con.position = form.position.data
+      con.organization = form.organization.data
+      db.session.add(con)
+      flash('The profile has been updated.')
+      return redirect(url_for('home.html', mobilenumber=con.mobilenumber))
+
+    form.firstname.data = con.firstname
+    form.lastname.data = con.lastname
+    form.email.data = con.email
+    form.skypeID.data = con.skypeID
+    form.mobilenumber.data = con.mobilenumber 
+    form.country.data = con.country
+    form.position.data = con.position
+    form.organization.data = con.organization
+    return render_template('editcontacts.html', form=form, con=con)
+
