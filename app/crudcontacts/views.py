@@ -2,7 +2,7 @@ from flask import session, render_template, redirect, request, url_for, flash
 from . import crudcontacts
 from .. import db
 from ..models import Contacts
-from .forms import AddNewContactForm
+from .forms import AddNewContactForm, EditContactForm
 
 @crudcontacts.route('/viewall', methods=['GET', 'POST'])
 def viewAllContacts():
@@ -34,9 +34,8 @@ def addContact():
     return render_template('crudcontacts/addnew.html', form=form)
 
 
-@crudcontacts.route('/editContacts', methods=['GET', 'POST'])
-
-def editUserContacts():
+@crudcontacts.route('/editContacts<int:id>', methods=['GET', 'POST'])
+def editUserContacts(id):
     con = Contacts.query.get_or_404(id)
     form = EditContactForm()
     if form.validate_on_submit():
@@ -49,8 +48,9 @@ def editUserContacts():
       con.position = form.position.data
       con.organization = form.organization.data
       db.session.add(con)
+      db.session.commit()
       flash('The profile has been updated.')
-      return redirect(url_for('home.html', mobilenumber=con.mobilenumber))
+      return redirect(url_for('auth.home', mobilenumber=con.mobilenumber))
 
     form.firstname.data = con.firstname
     form.lastname.data = con.lastname
@@ -60,5 +60,5 @@ def editUserContacts():
     form.country.data = con.country
     form.position.data = con.position
     form.organization.data = con.organization
-    return render_template('editcontacts.html', form=form, con=con)
+    return render_template('crudcontacts/editcontacts.html', form=form, con=con)
 

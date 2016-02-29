@@ -77,7 +77,7 @@
                             </li>
                        <br>
                         <li><a class="ajax-link" href="#"><i
-                                    class="glyphicon glyphicon-list-alt"></i><span> Most Recent</span></a></li>
+                                    class="glyphicon glyphicon-list-alt"></i><span> Schedule Appointment</span></a></li>
                         <br>
                         <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-star"></i><span> Favourites</span></a>
                         </li>
@@ -140,7 +140,7 @@
 
  
   <div class="panel panel-default">  
-  
+  <form>   
     {% for con in cons_ %} 
     <ul class="list-group">
       <a href="#" class="list-group-item breadcrumb">
@@ -163,8 +163,15 @@
        
       </a> 
     </ul>
+     </form>
     <a class="btn btn-primary" href="{{ url_for('crudcontacts.editUserContacts', id=con.id) }}">
 Edit Contact
+</a>
+<a class="btn btn-primary" href="{{ url_for('crudcontacts.editUserContacts', id=con.id) }}">
+Send Email
+</a>
+<a class="btn btn-primary" href="{{ url_for('crudcontacts.editUserContacts', id=con.id) }}">
+Send SMS
 </a>
     {% endfor %}
 
