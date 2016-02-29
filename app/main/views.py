@@ -10,6 +10,8 @@ from ..models import User
 
 @main.route('/')
 def index():
+	if not session['logged_in']:
+		return redirect(url_for('auth.login'))
 	return render_template('index.html')
 
 @main.route('/user/<name>')
