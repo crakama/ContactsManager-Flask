@@ -43,14 +43,6 @@ def create_app(config_name):
 
 	db.init_app(contactsapp)
 
-	# gravatar = Gravatar(app,
- #                    size=100,
- #                    rating='g',
- #                    default='retro',
- #                    force_default=False,
- #                    force_lower=False,
- #                    use_ssl=False,
- #                    base_url=None)
 
 
 	
@@ -66,12 +58,12 @@ def create_app(config_name):
 	return contactsapp
 
 
-	#What this file does for the SQLAlchemy DB framework
-	#
-	#Does imports of needed modules
-	#Creates flask configuration objects
-	#Instanciates an object of type SQLAchemy
-	#Configures DB URLs as key called SQLALCHEMY_DATABASE_URL in the flask configuration object, 
-	#whose value is directory path to where the database is located
+	'''What this file does for the SQLAlchemy DB framework
+	
+	Does imports of needed modules
+	Creates flask configuration objects
+	Instanciates an object of type SQLAchemy
+	Configures DB URLs as key called SQLALCHEMY_DATABASE_URL in the flask configuration object, 
+	whose value is directory path to where the database is located'''
  
 

@@ -13,6 +13,36 @@ def viewAllContacts():
 
     return render_template('home.html', cons_=cons_)
 
+    '''
+    sendSMS function is called when the send button on ModalSMS is clicked
+
+    '''
+
+@crudcontacts.route('/getmobilenumber', methods=['POST'])
+def getMobileNO():
+  form = SendSMSForm()
+  if form.validate_on_submit():
+    sms = Contacts.query.filter_by(id=id)
+    if sms is None:
+      return redirect(url_for('main.page_not_found'))
+    form.mobilenumber.data = sms.mobilenumber
+    number = []
+    number.append({'mobilenumber':number[0][0]})
+    return json.dumps(number)
+
+  flash('Mobile Number has been retrieved!') 
+  return render_template('home.html', sms=sms)
+
+
+@crudcontacts.route('/sendsms/', methods=['GET','POST'])
+def sendSMS():
+  phoneNumber = request.form['recipientNo']
+  message = request.form['msgText']
+  # Code to send SMS
+  
+  flash('Your Message has been sent!') 
+  return render_template('home.html', sms=sms)
+
 
 
 @crudcontacts.route('/addnew', methods=['GET', 'POST'])
@@ -34,7 +64,7 @@ def addContact():
     return render_template('crudcontacts/addnew.html', form=form)
 
 
-@crudcontacts.route('/editContacts<int:id>', methods=['GET', 'POST'])
+@crudcontacts.route('/editContacts/<int:id>', methods=['GET', 'POST'])
 def editUserContacts(id):
     con = Contacts.query.get_or_404(id)
     form = EditContactForm()

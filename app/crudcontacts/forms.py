@@ -29,3 +29,7 @@ class EditContactForm(Form):
 	position = StringField('Position', validators=[DataRequired(), Length(1, 64)])
 	organization = StringField('Organization ', validators=[DataRequired(), Length(1, 64)])
 	submit = SubmitField('Submit')
+
+class SendSMSForm(Form):
+	mobilenumber = StringField('Phone Number', validators=[DataRequired(), Length(1, 64)])
+	message = StringField('message ', validators=[DataRequired(), Length(1, 64)])

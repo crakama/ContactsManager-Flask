@@ -2,13 +2,14 @@ import urllib, hashlib
 from hashlib import md5
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
-from sqlalchemy import ForeignKey
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import ForeignKey,Column, Integer, DateTime, String
 from sqlalchemy.orm import relationship
 from flask.ext.login import UserMixin
 from app import login_manager
 
- 
 
+Base = declarative_base()
 
 
 class User(UserMixin, db.Model):
@@ -21,10 +22,7 @@ class User(UserMixin, db.Model):
 	
 	Contacts_id = db.Column(db.Integer, db.ForeignKey('usercontacts.id'))
 
-	#name = db.Column(db.String(64))
-	#location = db.Column(db.String(64))
-	#about_me = db.Column(db.Text())
-	#Contact_since = db.Column(db.DateTime(), default=datetime.utcnow)
+
 
 	@property
 	def password(self):
