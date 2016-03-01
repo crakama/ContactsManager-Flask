@@ -1,8 +1,16 @@
+# from .. import AfricasTalkingGateway
+# Import the helper gateway class
+from ..AfricasTalkingGateway import AfricasTalkingGateway, AfricasTalkingGatewayException
+
 from flask import session, render_template, redirect, request, url_for, flash
 from . import crudcontacts
 from .. import db
 from ..models import Contacts
 from .forms import AddNewContactForm, EditContactForm
+
+
+
+
 
 @crudcontacts.route('/viewall', methods=['GET', 'POST'])
 def viewAllContacts():
@@ -18,30 +26,58 @@ def viewAllContacts():
 
     '''
 
-@crudcontacts.route('/getmobilenumber', methods=['POST'])
-def getMobileNO():
-  form = SendSMSForm()
-  if form.validate_on_submit():
-    sms = Contacts.query.filter_by(id=id)
-    if sms is None:
-      return redirect(url_for('main.page_not_found'))
-    form.mobilenumber.data = sms.mobilenumber
-    number = []
-    number.append({'mobilenumber':number[0][0]})
-    return json.dumps(number)
-
-  flash('Mobile Number has been retrieved!') 
-  return render_template('home.html', sms=sms)
 
 
 @crudcontacts.route('/sendsms/', methods=['GET','POST'])
 def sendSMS():
-  phoneNumber = request.form['recipientNo']
-  message = request.form['msgText']
-  # Code to send SMS
+  # Specify login credentials for sms API
+  username = "catherinerakama"
+  apikey   = "83d3feea27722bdc80cef9c6921a62bf0fad4cb8a00ddd656927de804a4c111f"
   
-  flash('Your Message has been sent!') 
-  return render_template('home.html', sms=sms)
+  phoneNumber = request.form['recipientNo']
+  msg = request.form['msgText']
+
+  #create an empty list and assign variable "to" to the list
+  '''Code to send SMS
+      Specify the numbers that you want to send to, including country code
+      (+254 for Kenya in this case)
+   '''
+
+
+  to = phoneNumber 
+
+  '''
+       Contains the message body
+  '''
+
+
+
+
+  message = msg
+
+  # Create a new instance of the gateway class
+  gateway = AfricasTalkingGateway(username, apikey)
+  
+  try:
+
+     # Thats it, hit send and we'll take care of the rest.
+    results = gateway.sendMessage(to, message)
+
+    for recipient in results:
+
+      # status is either "Success" or "error message"
+      flash('Your Message has been sent!') 
+
+  except AfricasTalkingGatewayException, e:
+
+    print 'Encountered an error while sending: %s' % str(e)
+
+
+
+
+  
+  
+  return render_template('home.html')
 
 
 

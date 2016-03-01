@@ -6,32 +6,9 @@
 {{ super() }}
 <head>
     <title>Contacts Manager</title>
-   
-
-     <link href="{{ url_for('static', filename='css/bootstrap-cerulean.min.css') }}" rel="stylesheet">
-
-     
-       <link href="{{ url_for('static', filename='css/charisma-app.css') }}" rel="stylesheet">
-       <link href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}" rel="stylesheet">
-
-    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
-
-
-        {% block scripts %}
-
-<script src ="{{ url_for('static', filename='js/jquery-1.12.0.min.js') }}" type="text/javascript"></script>
-<script src ="{{ url_for('static', filename='js/custom.js') }}" type="text/javascript"></script>
-<script src ="{{ url_for('static', filename='js/bootstrap.min.js') }}" type="text/javascript"></script>
-<script src ="{{ url_for('static', filename='js/jquery.placeholder.min.js') }}" type="text/javascript"></script>
-<script src ="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
-
-
-
-<script src ="{{ url_for('static', filename='js/charisma.js') }}" type="text/javascript"></script>
-
-
-{% endblock %}
-    
+  <!-- Begin of importes css and JS files -->
+  {% include 'crudcontacts/_styles.html' %}
+     <!-- End of importes css and JS files --> 
     
 </head>
     <style>
@@ -69,55 +46,16 @@
     {% block navbar %}
 
 
-     <!-- left menu starts -->
+      <!-- left menu starts -->
+       {%include 'crudcontacts/_sidebar.html' %}
         <!-- left menu starts -->
-        
-            <div class="sidebar-nav breadcrumb pull-left">
-                <div class="nav-canvas">
-                    <div class="nav-sm nav nav-stacked">
-
-                    </div>
-                    <ul class="nav nav-pills nav-stacked main-menu">
-                        <li class="nav-header glyphicon glyphicon-home"><span> Manage Contacts</span></li> <br>
-                        <li class="accordion">
-                        <a class="ajax-link" href="{{ url_for('crudcontacts.viewAllContacts') }}"><i
-                                    class="glyphicon glyphicon-eye-open"></i><span> View All Contacts</span></a>
-                           
-                        </li>
-                        <br>
-                         <li><a href="{{ url_for('crudcontacts.addContact') }}"><i class="glyphicon glyphicon-edit"></i><span> Add New Contacts</span></a>
-                            </li>
-                       <br>
-                        <li><a class="ajax-link" href="#"><i
-                                    class="glyphicon glyphicon-list-alt"></i><span> Schedule Appointment</span></a></li>
-                        <br>
-                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-star"></i><span> Favourites</span></a>
-                        </li>
-                        
-                        <br>
-                        <li class="accordion">
-                            <a href="#"><i class="glyphicon glyphicon-briefcase"></i><span> Opportunities</span></a>
-                            
-                        </li><br>
-                        <li class="accordion">
-                            <a href="#"><i class="glyphicon glyphicon-th-large"></i><span> Organization</span></a>
-                            
-                        </li>
-                        
-                    </ul>
-                    
-                </div>
-            </div>
-      
-        <!--/span-->
-        <!-- left menu ends -->
       {% endblock %}</div>
 
       <div class="row">
 
       {% block content %}
         <div class="row">
-    <div class="box col-md-10">
+    <div class="box col-md-8">
     <div class="box-inner">
     <div class="box-header well" data-original-title="">
         <h2><i class="glyphicon glyphicon-user"></i> List Contacts</h2>
@@ -146,52 +84,12 @@
     
     <!-- <div class="col-md-10 col-md-offset-2"> -->
     <div class="col-md-12">
-  <div class="">
+        <div class="">
 
  
-  <div class="panel panel-default"> 
- 
-    {% for con in cons_ %} 
-    <ul id="ulist" class="list-group">
-      <a href="#" class="list-group-item breadcrumb"> 
-        <h4 class="list-group-item-heading">
-         <!--  {{ con.firstname }}  -->
-        </h4> 
-         <div class="pull-right action-buttons" > <a  data-toggle="modal" data-target="#editModal"><span class=" listcontacts glyphicon glyphicon-pencil"></span></a></div>
-        <p class="">
-       
-         <img src="{{ con.avatar(128) }}">
-         {{ con.firstname }} 
-        {{ con.lastname }} 
-        
-        {{ con.mobilenumber }} 
-        {{ con.country }} 
-        {{ con.skypeID }} 
-        {{ con.position }} 
-        {{ con.organization }} 
-         <a href="mailto:{{ con.email }}">{{ con.email }}</a>  
-       
-        </p>  
-       
-      </a> 
-    </ul>
-     </form>
-    <a class="btn btn-primary" href="{{ url_for('crudcontacts.editUserContacts', id=con.id) }}">
-Edit Contact
-</a>
-<a class="btn btn-primary"  href="{{ url_for('crudcontacts.editUserContacts', id=con.id) }}">
-Send Email
-</a>
-<a  data-id=${Id} onclick="loadForm({{ con.mobilenumber }})" class="btn btn-primary"   >
-Send SMS
-</a>
-
-    {% endfor %}
-
-  </div> 
-  
-</div>
-</div>
+         {% include '_viewdata.html'%}
+        </div>
+    </div>
    
     </tbody>
     </table>
