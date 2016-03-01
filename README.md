@@ -35,13 +35,17 @@ How to use:
 
 Locally
 1. At the terminal, navigate to your ContactsManager-Flask project directory and activate your virtual environment
+
 2. While inside the folder issue the following commands: python manage.py runserver
+
 3. Go to your browser and type: localhost:5000/, register and submit the form
+
 4. login with the credentials you used during your registration
+
 5. Use the system!
 
 On Heroku:
 1. Visit this link: https://businesscontactsmanager.herokuapp.com/ 
 2. Register
-3. use the credentials that you registered with to login
+3. use the credentials that you registered with to login "Please use a VALID email address"
 
