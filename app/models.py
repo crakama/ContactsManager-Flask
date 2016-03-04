@@ -17,7 +17,7 @@ Base = declarative_base()
 class User(UserMixin, db.Model):
 	__tablename__ = "usertable"
 	id = db.Column(db.Integer, primary_key=True)
-	# social_id = db.Column(db.String(64), nullable=False, unique=True)
+	social_id = db.Column(db.String(64), nullable=False, unique=True)
 	username = db.Column(db.String(64), index=True, unique=True)
 	email = db.Column(db.String(120), index=True, unique= True)
 	PhoneNum = db.Column(db.Integer,index=True, unique=True)
