@@ -7,6 +7,8 @@ from sqlalchemy import ForeignKey,Column, Integer, DateTime, String
 from sqlalchemy.orm import relationship
 from flask.ext.login import UserMixin
 from app import login_manager
+from flask.ext.social import Social
+from flask.ext.social.datastore import SQLAlchemyConnectionDatastore
 
 
 Base = declarative_base()
@@ -15,6 +17,7 @@ Base = declarative_base()
 class User(UserMixin, db.Model):
 	__tablename__ = "usertable"
 	id = db.Column(db.Integer, primary_key=True)
+	# social_id = db.Column(db.String(64), nullable=False, unique=True)
 	username = db.Column(db.String(64), index=True, unique=True)
 	email = db.Column(db.String(120), index=True, unique= True)
 	PhoneNum = db.Column(db.Integer,index=True, unique=True)
@@ -43,13 +46,10 @@ class User(UserMixin, db.Model):
 
 		return '<User %r>' % (self.username)
 
+		#Loads the user by his id
 	@login_manager.user_loader
-	def get_user(ident):
-  		return User.query.get(int(ident))
-
-
-
-
+	def load_user(id):
+  		return User.query.get(int(id))
 
 
 class Contacts(db.Model):

@@ -28,11 +28,15 @@ def create_app(config_name):
    #Flask application configuration Object#
 	contactsapp = Flask(__name__)
 
+	# contactsapp.configauth['SECURITY_POST_LOGIN'] = '/profile'
+
     #Configures DB URLs as key called SQLALCHEMY_DATABASE_URL
 	contactsapp.config.from_object(config[config_name])
 	config[config_name].init_app(contactsapp)
 
 	bootstrap.init_app(contactsapp)
+
+	
 
 	mail.init_app(contactsapp)
 

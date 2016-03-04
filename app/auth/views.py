@@ -22,6 +22,7 @@ def login_required(f):
 def home():
 	return render_template('home.html')
 
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
