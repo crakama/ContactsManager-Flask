@@ -1,0 +1,32 @@
+ <!-- SMS Modal starts -->
+ <div  class="smsmodal">
+    <div id="myModal" class="modal fade" role = "dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Send SMS</h4>
+                </div>
+                <form role="form" method="post" action="{{ url_for('crudcontacts.sendSMS') }}">
+                <div class="modal-body">
+                    
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label"> To:</label>
+                            <input type="text" name="recipientNo" class="form-control" id="recipientNo"/>
+                            <input type="text" name="test" value="test" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Message:</label>
+                            <textarea name="msgText" class="form-control" id="message-text"></textarea>
+                        </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-primary" value="Send"/>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div></div>
+    <!-- SMS Modal end -->

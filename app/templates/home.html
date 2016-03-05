@@ -1,8 +1,114 @@
+{% extends "base.html" %}
+<html>
+{% block title %}Index{% endblock %}
+{% block head %}
 
-{% extends "layout.html" %}
-{% block content %}
-  <div class="jumbo">
-    <h4>Welcome to your Contacts Manager<h4>
+{{ super() }}
+<head>
+    <title>Contacts Manager</title>
+  <!-- Begin of importes css and JS files -->
+  {% include 'crudcontacts/_styles.html' %}
+     <!-- End of importes css and JS files --> 
     
-  </div>
+</head>
+    <style>
+    </style>
+{% endblock %}
+{% block body %}
+<body>
+ 
+
+    {% block header %}
+    <header>
+      <div class ="navbar-default" >
+        
+        <ul class = "nav navbar-nav navbar-left" role="presentation">
+            <li role = "presentation" class = "active">
+              <a href="#">Business Contacts Manager<span class ="badge"></span></a>
+            </li>
+        
+        </ul>
+    <ul class="nav navbar-nav navbar-right " role="presentation">
+            <li><a href="{{ url_for('auth.logout') }}"> Logout </a></li>
+            {% for message in get_flashed_messages() %}
+               {{message}}
+            {% endfor %}
+            
+        </ul>
+
+
+
+
+    </header>
+    {% endblock %}
+<br>
+    <div class="sidebar-nav ">
+    {% block navbar %}
+
+
+      <!-- left menu starts -->
+       {%include 'crudcontacts/_sidebar.html' %}
+        <!-- left menu starts -->
+      {% endblock %}</div>
+
+      <div class="row">
+
+      {% block content %}
+        <div class="row">
+    <div class="box col-md-8">
+    <div class="box-inner">
+    <div class="box-header well" data-original-title="">
+        <h2><i class="glyphicon glyphicon-user"></i> List Contacts</h2>
+
+        <div class="box-icon">
+            <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+            <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                    class="glyphicon glyphicon-chevron-up"></i></a>
+            
+        </div>
+    </div>
+    <div class="box-content">
+    <div class="alert alert-info"> <a href="" target="">/</a></div>
+    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+    <thead>
+    <tr>
+
+    </tr>
+    </thead>
+
+    <tbody>
+   
+       
+        
+        
+    
+    <!-- <div class="col-md-10 col-md-offset-2"> -->
+    <div class="col-md-12">
+        <div class="">
+
+ 
+         {% include '_viewdata.html'%}
+        </div>
+    </div>
+   
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+ 
+
+    </div><!--/row-->
+     
+    
+
+      {% endblock %}
+    </div>
+
+{% include 'crudcontacts/_smsmodal.html' %} 
+
+
+ 
+</body>
+
 {% endblock %}

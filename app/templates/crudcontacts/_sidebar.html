@@ -1,0 +1,41 @@
+ <!-- left menu starts -->
+        
+            <div class="sidebar-nav breadcrumb pull-left" class="col-md-4" >
+                <div class="nav-canvas">
+                    <div class="nav-sm nav nav-stacked">
+
+                    </div>
+                    <ul class="nav nav-pills nav-stacked main-menu">
+                        <li class="nav-header glyphicon glyphicon-home"><span> Manage Contacts</span></li> <br>
+                        <li class="accordion">
+                        <a class="ajax-link" href="{{ url_for('crudcontacts.viewAllContacts') }}"><i
+                                    class="glyphicon glyphicon-eye-open"></i><span> View All Contacts</span></a>
+                           
+                        </li>
+                        <br>
+                         <li><a href="{{ url_for('crudcontacts.addContact') }}"><i class="glyphicon glyphicon-edit"></i><span> Add New Contacts</span></a>
+                            </li>
+                       <br>
+                        <li><a class="ajax-link" href="#"><i
+                                    class="glyphicon glyphicon-list-alt"></i><span> Schedule Appointment</span></a></li>
+                        <br>
+                        <li><a class="ajax-link" href="#"><i class="glyphicon glyphicon-star"></i><span> Favourites</span></a>
+                        </li>
+                        
+                        <br>
+                        <li class="accordion">
+                            <a href="#"><i class="glyphicon glyphicon-briefcase"></i><span> Opportunities</span></a>
+                            
+                        </li><br>
+                        <li class="accordion">
+                            <a href="#"><i class="glyphicon glyphicon-th-large"></i><span> Organization</span></a>
+                            
+                        </li>
+                        
+                    </ul>
+                    
+                </div>
+            </div>
+      
+        <!--/span-->
+        <!-- left menu ends -->

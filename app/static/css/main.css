@@ -1,92 +1,46 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #444;
+body
+      {
+        
+        background-color:transparent;
+      }
+
+
+#banner
+      {
+        
+  text-align:center;
+  background-image:url("img/bsm.jpg");
+  background-repeat:no-repeat;
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 100%;
+  min-height: 100%;
 }
- 
-/*
- * Create dark grey header with a white logo
- */
+
+ .navbar-default {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 50px;
+    display: block;
+    padding: 1px 5px;
+    font-size: 11px;
+
+    font-weight: bold;
+    line-height: 18px;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+  background-color: #428BCA;
   
-header {
-  background-color: #2B2B2B;
-  height: 35px;
-  width: 100%;
-  opacity: .9;
-  margin-bottom: 10px;
 }
- 
-header h1.logo {
-  margin: 0;
-  font-size: 1.7em;
-  color: #fff;
-  text-transform: uppercase;
-  float: left;
-}
- 
-header h1.logo:hover {
-  color: #fff;
-  text-decoration: none;
-}
- 
-/*
- * Center the body content
- */
+.listcontacts{
+
   
-.container {
-  width: 940px;
-  margin: 0 auto;
 }
- 
-div.jumbo {
-  padding: 10px 0 30px 0;
-  background-color: #eeeeee;
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
-}
-div.login {
-  padding: 10px 0 30px 0;
-  background-color: #eeeeee;
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
-}
- 
-h2 {
-  font-size: 3em;
-  margin-top: 40px;
-  text-align: center;
-  letter-spacing: -2px;
-}
- 
-h3 {
-  font-size: 1.7em;
-  font-weight: 100;
-  margin-top: 30px;
-  text-align: center;
-  letter-spacing: -1px;
-  color: #999;
-}
-/*
- * Display navigation links inline
- */
- 
-.menu {
-  float: right;
-  margin-top: 8px;
-}
- 
-.menu li {
-  display: inline;
-}
- 
-.menu li + li {
-  margin-left: 35px;
-}
- 
-.menu li a {
-  color: #999;
-  text-decoration: none;
-}
+.smsmodal{
+      margin: 20px;
+    }

@@ -1,0 +1,41 @@
+ <div class="panel panel-default "> 
+ 
+    {% for con in cons_ %} 
+    <ul id="ulist" class="list-group">
+      <a href="#" class="list-group-item breadcrumb"> 
+        <h4 class="list-group-item-heading">
+         <!--  {{ con.firstname }}  -->
+        </h4> 
+         <div class="pull-right action-buttons" > <a  data-toggle="modal" data-target="#editModal"><span class=" listcontacts glyphicon glyphicon-pencil"></span></a></div>
+        <p class="">
+       
+         <img src="{{ con.avatar(128) }}">
+         {{ con.firstname }} 
+        {{ con.lastname }} 
+        
+        {{ con.mobilenumber }} 
+        {{ con.country }} 
+        {{ con.skypeID }} 
+        {{ con.position }} 
+        {{ con.organization }} 
+         <a href="mailto:{{ con.email }}">{{ con.email }}</a>  
+       
+        </p>  
+       
+      </a> 
+    </ul>
+     </form>
+    <a class="btn btn-primary" href="{{ url_for('crudcontacts.editUserContacts', id=con.id) }}">
+Edit Contact
+</a>
+<a class="btn btn-primary"  href="{{ url_for('crudcontacts.editUserContacts', id=con.id) }}">
+Send Email
+</a>
+<a  data-id=${Id} onclick="loadForm({{ con.mobilenumber }})" class="btn btn-primary"   >
+Send SMS
+</a>
+
+    {% endfor %}
+
+  </div> 
+  

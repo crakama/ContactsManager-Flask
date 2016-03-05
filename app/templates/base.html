@@ -1,22 +1,35 @@
-<!DOCTYPE html>
-<html>
+ {% extends "bootstrap/base.html"%}
+ <!DOCTYPE html>
+
+  <html>
   <head>
+    
+    <meta charset="utf-8">
+
     {% if title %}
     <title>{{ title }} - Contacts Manager </title> 
     {% else %}
-    <title> Contacts Manager </title>   
-    <strong><link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"></strong>
+    <title> Contacts Manager </title>
+
+    
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     {% endif %}
   </head>
   <body>
     <header>
       <div class="container">
-        <h1 class="logo">CM App</h1>
+        
         {% with messages = get_flashed_messages() %}
         {% if messages %}
            <ul>
               {% for messages in messages %}
+              <div class="alert alert-warning alert-dismissible" role = "alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   <li>{{ message }}</li>
+              </div>
               {% endfor %}
           </ul>
         {% endif %}
@@ -31,10 +44,26 @@
 
       </div>
       </header>
-     
-    <div class="container">
-      {% block content %}
+      <div class="sidebar-nav">
+      {% block navbar %}
       {% endblock %}
     </div>
+     
+    <div class="row">
+      {% block content %}
+
+       {% block page_content %}
+    
+    {% endblock %}
+
+
+      {% endblock %}
+    </div>
+ 
+     <div>
+   
+    </div>
+    
   </body>
-</html>
+</html> -->
+
