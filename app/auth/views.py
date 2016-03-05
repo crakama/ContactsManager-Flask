@@ -6,6 +6,7 @@ from ..models import User, Contacts
 from .forms import LoginForm, RegistrationForm
 from functools import wraps
 from app import login_manager
+from ..oauth import OAuthSignIn
 
 def login_required(f):
 	@wraps(f)
@@ -22,12 +23,30 @@ def login_required(f):
 def home():
 	return render_template('home.html')
 
+
+
+'''
+oauth_authorize function redirects user to providers website 
+to let the user authenticate user there
+
+'''
+
 @auth.route('/authorize/<provider>')
 def oauth_authorize(provider):
     if not current_user.is_anonymous:
         return redirect(url_for('auth.login'))
     oauth = OAuthSignIn.get_provider(provider)
     return oauth.authorize()
+
+
+
+    '''
+    oauth_callback function redirects the user back 
+    to the application after authentication. 
+    Redirects back to the URL that called it, 
+    because the provider cannot acess directly access internal methods of this app
+
+    '''
 
 
 @auth.route('/callback/<provider>')
@@ -41,7 +60,7 @@ def oauth_callback(provider):
         return redirect(url_for('auth.login'))
     user = User.query.filter_by(social_id=social_id).first()
     if not user:
-        user = User(social_id=social_id, nickname=username, email=email)
+        user = User(social_id=social_id, username=username, email=email)
         db.session.add(user)
         db.session.commit()
     login_user(user, True)
