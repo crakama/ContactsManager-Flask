@@ -13,16 +13,29 @@
 <body >
 	
 {% block page_content %}
-<div id="banner" class="col-md-4 col-md-offset-4">
+<div>
+<ul class=navigation>
+  <li><a href="{{ url_for('auth.index') }}">homepage</a></li>
+  {% if g.user %}
+  <li><a href="{{ url_for('auth.logout') }}">sign out [{{ g.user.screen_name}}]</a></li>
+  {% else %}
+  <li><a href="{{ url_for('auth.login') }}">sign in</a></li>
+  <div id="banner" class="col-md-4 col-md-offset-4">
 <div class="page-header text-center">
     <h1>Welcome</h1>
 </div>
     {# wtf.quick_form(form) #}
     <div>
       <p>You want to manage your contacts? <a href="{{ url_for('auth.login') }}">Login</a> Or <a href="{{ url_for('auth.register') }}">Register</a></p>
-      <h6> "Register to login:Use VALID email address and phone number preceeding your country code e.g +254 for Kenya"</h6>
+     
     </div>
 </div>
+  {% endif %}
+</ul>
+
+</div>
+
+
 {% endblock %}
 </body>
 </html>

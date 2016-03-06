@@ -5,7 +5,8 @@ from flask.ext.mail import Mail
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
 from config import config
-from oauth import OAuthSignIn
+from flask_oauthlib.client import OAuth
+# from oauth import OAuthSignIn
 
 
 
@@ -18,6 +19,7 @@ login_manager.login_view = 'auth.login'
 
 #Create the database Object
 db = SQLAlchemy()
+oauth = OAuth()
 
 
 from app import models
@@ -35,18 +37,10 @@ def create_app(config_name):
 	contactsapp.config.from_object(config[config_name])
 	config[config_name].init_app(contactsapp)
 
+	oauth.init_app(contactsapp)
+
 	bootstrap.init_app(contactsapp)
 
-	contactsapp.config['OAUTH_CREDENTIALS'] = {
-    'facebook': {
-        'id': '184223628621658',
-        'secret': 'f6a6041edc65d615a975fe4c6f053154'
-        },
-    'twitter': {
-        'id': 'qtrDRR8LELDpHCwg7AedlfVcj',
-        'secret': 'F2xTVvoDWSmveSC4I9Ap4rvKpOov3OLb9iIjc8baQYyFHrxTMM'
-        }
-        }
 
 	
 
@@ -72,6 +66,8 @@ def create_app(config_name):
 	contactsapp.register_blueprint(crudcontacts_blueprint, url_prefix='/crudcontacts')
 		
 	return contactsapp
+	
+
 
 
 	'''What this file does for the SQLAlchemy DB framework

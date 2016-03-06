@@ -47,6 +47,8 @@ config = {
 	'default': DevelopmentConfig
 }
 
+
+
 #What this file does for the SQLAlchemy DB framework
 #
 #Creates URLs that points to the database location
