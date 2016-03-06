@@ -3,7 +3,7 @@ Babel==2.2.0
 blinker==1.4
 decorator==4.0.9
 dominate==2.1.17
-facebook-sdk==1.0.0a0
+
 Flask==0.10.1
 Flask-Babel==0.9
 Flask-Bootstrap==3.3.5.7
