@@ -58,17 +58,19 @@ def index():
 def home():
     tweets = None
     if g.user is not None:
-        resp = twitter.request('statuses/home_timeline.json')
-        if resp.status == 200:
-            tweets = resp.data
-        else:
-            flash('Unable to load tweets from Twitter.')
-	return render_template('home.html')
+        if resp is not None:
+            resp = twitter.request('statuses/home_timeline.json')
+            if resp.status == 200:
+                tweets = resp.data
+            else:
+                flash('Unable to load tweets from Twitter.')
+        
+    return render_template('home.html')
 
 
 
 '''
-authorize function redirects user to providers website 
+oauthorize function redirects user to providers website 
 to let the user authenticate user there
 
 '''
@@ -86,21 +88,22 @@ def oauthorized():
 
 
     '''
-    oauth_callback function redirects the user back 
+    twitter_login function returns a callback methon which redirects the user back 
     to the application after authentication. 
-    Redirects back to the URL that called it, 
+    Redirects back to the URL that called it (callback_url), 
     because the provider cannot acess directly access internal methods of this app
 
     '''
 
+@auth.route('/twitterlogin', methods=['GET', 'POST'])
+def twitter_login():
+
+    callback_url = url_for('auth.oauthorized', next=request.args.get('next'))
+    return twitter.authorize(callback=callback_url or request.referrer or None) 
 
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-
-    callback_url = url_for('auth.oauthorized', next=request.args.get('next'))
-    return twitter.authorize(callback=callback_url or request.referrer or None)
-
     form = LoginForm()
 
     if form.validate_on_submit():
@@ -120,7 +123,7 @@ def logout():
     session.pop('twitter_oauth', None)
     logout_user()
     flash('You have been logged out.')
-    return redirect(url_for('main.index'))
+    return redirect(url_for('auth.login'))
 
 
 

@@ -1,0 +1,60 @@
+ <!-- SMS Modal starts -->
+ <div  class="">
+    <div id="my" class="modal fade" role = "dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Edit Contact</h4>
+                </div>{% for con in cons_ %} 
+                <form role="form" method="post" action="{{ url_for('crudcontacts.editUserContacts', id=con.id) }}">{% endfor %} 
+                <div class="modal-body">
+                    
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label"> First Name:</label>
+                            <input type="text" name="firstname" class="form-control" id="firstname"/>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label"> Last Name:</label>
+                            <input type="text" name="lastname" class="form-control" id="lastname"/>
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label"> Mobile Number:</label>
+                            <input type="text" name="mobilenumber" class="form-control" id="mobilenumber"/>
+                            
+                        </div>  
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label"> Country:</label>
+                            <input type="text" name="country" class="form-control" id="country"/>
+                            
+                        </div> 
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label"> skypeID:</label>
+                            <input type="text" name="skypeID" class="form-control" id="skypeID"/>
+                            
+                        </div> 
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label"> Organization:</label>
+                            <input type="text" name="organization" class="form-control" id="organization"/>
+                            
+                        </div>                      
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label"> Position:</label>
+                            <input type="text" name="position" class="form-control" id="position"/>
+                            
+                        </div>                      
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-primary" value="Send"/>
+                </div>
+                </form>
+
+            </div>
+        </div>
+    </div></div>
+    <!-- SMS Modal end -->

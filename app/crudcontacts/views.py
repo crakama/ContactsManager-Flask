@@ -70,7 +70,7 @@ def sendSMS():
 
   except AfricasTalkingGatewayException, e:
 
-    print 'Encountered an error while sending: %s' % str(e)
+    flash('Encountered an error while sending: %s' % str(e))
 
 
 

@@ -1,7 +1,19 @@
 
-function loadForm (number) {
+function SendSMSModal (number) {
 	$('#myModal').modal();
 	$('#recipientNo').val(number);
+}
+
+function Edit (firstname,lastname,mobilenumber,country,skypeID,position,organization,email) {
+    $('#my').modal();
+    $('#firstname').val(string);
+    $('#lastname').val(string);
+    $('#mobilenumber').val(number);
+    $('#country').val(string);
+    $('#skypeID').val(string);
+    $('#position').val(string);
+    $('#organization').val(string);
+    $('#email').val(string);
 }
 $(window).load(function() {    
 
